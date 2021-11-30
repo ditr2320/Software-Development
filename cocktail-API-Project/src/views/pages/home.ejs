@@ -1,0 +1,96 @@
+<%- include('../partials/header') %>
+<%- include('../partials/menu') %>
+<br>
+<div class="container" style="text-align: center; vertical-align: middle;">
+	<h1>Cocktail Search</h1>
+		<div class="jumbotron">
+					<div class="row">
+						<div class="col-3">
+						</div>
+							<div class="col-3">
+								<input class="form-control" type="text" name="drinkName" id="drinkName" placeholder="Enter Drink Name" style="width: 340px;" onchange="getDrink();">
+							</div>
+							<div class="col-3">
+								<input class="btn btn-light" type="submit" name="searchButton" id="searchButton" value = "Search" onclick="makeApiCall();"/>
+							</div>
+					</div>
+		</div>
+</div>
+
+<div class="container" id = "homePic" style="text-align: center; vertical-align: middle;">
+		<img src="../../resources/img/cocktailPic.jpeg" width="750">
+</div>
+
+<div class="container" style="text-align: center; vertical-align: middle;">
+	<div class="row">
+		<div id = "picDiv" class="col-sm">
+
+		</div>
+		<div id = "wordDiv" class="col-sm" style = "visibility: hidden; ">
+							<ol class="list-group list-group-numbered">
+				  <li class="list-group-item d-flex justify-content-between align-items-start">
+				    <div class="ms-2 me-auto">
+				      <div id = "nameDiv" name = "nameDiv"">NA</div>
+				    </div>
+				    <span id = "alcohol" class="badge rounded-pill bg-light text-dark">NA</span>
+				  </li>
+				  <li class="list-group-item d-flex justify-content-between align-items-start">
+				    <div class="ms-2 me-auto">
+				      <div  id = "glassTypeDiv" class="fw-bold"> NA </div>
+				    </div>
+				  </li>
+					<li class="list-group-item d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div id = "instructDiv" class="fw-bold"> NA </div>
+						</div>
+					</li>
+					<li class="list-group-item d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="text-center">
+								<a
+									href="#myModal"
+									class="btn btn-info"
+									data-toggle="modal"
+									>Review</a>
+							</div>
+						</div>
+					</li>
+				</ol>
+		</div>
+	</div>
+</div>
+
+
+<div id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4>Add Review</h4>
+			</div>
+			<div class="modal-body">
+				<form action="/review" method="post" name = "reviewForm">
+				<div class="row">
+					<div class="col">
+						<p>Cocktail Name: </p><br><p>Enter your review here: </p>
+					</div>
+					<div class="col">
+							<input type="text" id="drinkInput" name="drinkInput" value="default value" style="width:300px;background-color: #E8E8E8;"> <br> <br>
+						<div class="form-group">
+						<textarea id="reviewText" name="reviewText" rows="3" style="width:300px;"></textarea>
+					</div>
+					</div>
+					</div> <br>
+					<div class="row" style="text-align: center; vertical-align: middle;">
+						<div class="col">
+							<input class="btn btn-info" type="submit" name="addReview" id="addReview" value = "Submit"/>
+						</div>
+						<br><br>
+					</div>
+						</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+<%- include('../partials/footer') %>

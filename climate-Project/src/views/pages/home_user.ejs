@@ -1,0 +1,114 @@
+<!-- Home Page -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Home</title>
+	<link rel='icon' href='../resources/img/favicon.ico' type='image/x-icon'/>
+    <!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  </head>
+  <body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="home_user">
+      <img class="rounded-circle" src="views/img/tree1.png" alt="add logo" width="30" height="30">
+    </a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarText">
+		<ul class="navbar-nav mr-auto">
+		  <li class="nav-item active">
+			<a class="nav-link" href="home_user">Home <span class="sr-only">(current)</span></a>
+		  </li>
+      <li class="nav-item">
+        <a class="nav-link" href="current_reccomendations">Current</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="weekly">Weekly</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="monthly">Monthly</a>
+      </li>
+		</ul>
+    <div class="form-inline my-2 my-lg-0">
+			<!-- <button class="btn btn-outline-light my-2 my-sm-0" href="submit">Logout</button> -->
+      <a class="btn btn-secondary" href="home" role="button">Log Out</a>
+		</div>
+	  </div>
+	</nav>
+  <div class="container" style="text-align: center; vertical-align: middle;">
+    <!-- body -->
+    <div class="jumbotron" >
+      <div class="row">
+        <div class="col-6">
+          <br>
+          <h1 class="display-4">ClimaTrak</h1>
+                <hr class="my-4">
+          <p class="lead">Easy access to continuously updated temperature and humidity data</p>
+          <a class="btn btn-secondary" href="home" role="button">Log Out</a>
+        </div>
+        <div class="col-6">
+            <img src="views/img/logo.png" alt="logo here" height = 250>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm">
+        <br> <br>
+        <h3>About us</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <hr>
+            <div class="card" style="width: 15rem;">
+            <img class="card-img-top" src="views/img/cardPic_didi.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Didi Trifonova</h5>
+              <p class="card-text">I am currently a junior studying Computer Science and Computational Biology. I enjoy skiing, spending time with friends, and playing volleyball.</p>
+            </div>
+          </div>
+      </div>
+      <div class="col-3">
+        <hr>
+        <div class="card" style="width: 15rem;">
+        <img class="card-img-top" src="views/img/cards_ivan.JPG" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Ivan Rodriguez</h5>
+          <p class="card-text">
+            I am from Northern Colorado and am a Junior studying Electrical & Computer Engineering. Some of my hobbies include
+            baseball and golf.
+          </p>
+        </div>
+      </div>
+      </div>
+      <div class="col-3">
+        <hr>
+        <div class="card" style="width: 15rem;">
+        <img class="card-img-top" src="views/img/card_shrujal.jpg" alt="Shrujal Mogadati">
+        <div class="card-body">
+          <h5 class="card-title">Shrujal</h5>
+          <p class="card-text">I am currently a Sophomore studying Computer Science. I am from Bangalore, India and I enjoy watching
+            and playing Basketball. </p>
+        </div>
+      </div>
+      </div>
+      <div class="col-3">
+        <hr>
+        <div class="card" style="width: 15rem;">
+        <img class="card-img-top" src="views/img/card_qi.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Qi</h5>
+          <p class="card-text">I am studying Computer Science. I am from Inner Mongolia. I like playing video game.</p>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,172 @@
+Lab #6 Take Home
+Your name: Didi Trifonova
+
+SELECT * FROM products
+FETCH FIRST 10 ROWS ONLY;
+
+---------------------------------------- Question 1 Query ---------------------------------------- 
+
+CREATE VIEW max_cities as
+SELECT ship_city, COUNT(*) 
+FROM orders 
+GROUP BY ship_city; 
+
+SELECT * FROM max_cities 
+WHERE count = (SELECT max(count) FROM max_cities); 
+
+postgres-# WHERE count = (SELECT max(count) FROM max_cities); 
+   ship_city    | count 
+----------------+-------
+ Rio de Janeiro |    34
+(1 row)
+
+---------------------------------------- Question 2 Query ---------------------------------------- 
+
+CREATE VIEW graz_orders as
+SELECT ship_city, order_id 
+FROM orders 
+WHERE ship_city = 'Graz'; 
+
+CREATE VIEW graz_id as 
+SELECT graz_orders.order_id, graz_orders.ship_city, order_details.product_id
+FROM graz_orders
+INNER JOIN order_details 
+ON graz_orders.order_id = order_details.order_id;
+
+CREATE VIEW graz_id_product as
+SELECT graz_id.order_id, graz_id.product_id, products.product_name
+FROM graz_id
+INNER JOIN products 
+on graz_id.product_id = products.product_id;
+
+CREATE VIEW order_counts as 
+SELECT order_id,COUNT(*) 
+FROM graz_id_product
+GROUP BY order_id; 
+
+CREATE VIEW min_orders as 
+SELECT * FROM order_counts
+WHERE count = (SELECT min(count) FROM order_counts); 
+
+SELECT graz_id_product.order_id, graz_id_product.product_name
+FROM min_orders
+LEFT JOIN graz_id_product
+on min_orders.order_id = graz_id_product.order_id;
+
+postgres-# on min_orders.order_id = graz_id_product.order_id;
+ order_id |         product_name          
+----------+-------------------------------
+    10667 | Gudbrandsdalsost
+    10667 | Flotemysost
+    10402 | Tunnbröd
+    10402 | Vegie-spread
+    10403 | Pavlova
+    10403 | Chocolade
+    10571 | Tofu
+    10571 | Singaporean Hokkien Fried Mee
+(8 rows)
+
+---------------------------------------- Question 3 Query ---------------------------------------- 
+
+CREATE VIEW av_orders AS 
+SELECT CAST(COUNT(DISTINCT order_id) AS FLOAT)/ CAST(COUNT(DISTINCT company_name) AS FLOAT)
+AS av_orders 
+FROM customers
+LEFT JOIN orders 
+ON customers.customer_id = orders.customer_id; 
+
+    av_orders     
+------------------
+ 9.12087912087912
+(1 row)
+
+CREATE VIEW ordersByCompany AS 
+SELECT customers.company_name, COUNT(orders.order_id) 
+FROM customers 
+INNER JOIN orders 
+ON customers.customer_id = orders.customer_id 
+GROUP BY customers.company_name;
+
+SELECT *
+FROM ordersByCompany
+WHERE count > (SELECT * FROM av_orders); 
+
+
+         company_name         | count 
+------------------------------+-------
+ Magazzini Alimentari Riuniti |    10
+ Lehmanns Marktstand          |    15
+ Mère Paillarde               |    13
+ Rattlesnake Canyon Grocery   |    18
+ Hungry Owl All-Night Grocers |    19
+ Königlich Essen              |    14
+ Frankenversand               |    15
+ Around the Horn              |    13
+ Victuailles en stock         |    10
+ HILARION-Abastos             |    18
+ Old World Delicatessen       |    10
+ LILA-Supermercado            |    14
+ Godos Cocina Típica          |    10
+ Die Wandernde Kuh            |    10
+ Blondesddsl père et fils     |    11
+ Ricardo Adocicados           |    11
+ La maison d'Asie             |    14
+ Wartian Herkku               |    15
+ Bon app'                     |    17
+ Berglunds snabbköp           |    18
+ Suprêmes délices             |    12
+ Ernst Handel                 |    30
+ LINO-Delicateses             |    12
+ Ottilies Käseladen           |    10
+ Great Lakes Food Market      |    11
+ Save-a-lot Markets           |    31
+ Reggiani Caseifici           |    12
+ Queen Cozinha                |    13
+ QUICK-Stop                   |    28
+ Richter Supermarkt           |    10
+ Tortuga Restaurante          |    10
+ Folk och fä HB               |    19
+ Hanari Carnes                |    14
+ Vaffeljernet                 |    11
+ Bottom-Dollar Markets        |    14
+ B's Beverages                |    10
+ White Clover Markets         |    14
+ Piccolo und mehr             |    10
+ Island Trading               |    10
+(39 rows)
+
+---------------------------------------- Question 4 Query ---------------------------------------- 
+
+SELECT category_name, COUNT(product_id) 
+FROM categories 
+INNER JOIN products
+ON products.category_id = categories.category_id 
+GROUP BY categories.category_name 
+HAVING COUNT(DISTINCT products.product_id) > 10; 	
+
+ category_name | count 
+---------------+-------
+ Beverages     |    12
+ Condiments    |    12
+ Confections   |    13
+ Seafood       |    12
+(4 rows)
+
+---------------------------------------- Question 5 Query ---------------------------------------- 
+
+CREATE VIEW product_qnty AS
+SELECT product_name, products.product_id, SUM(order_details.quantity) AS sum
+FROM products 
+INNER JOIN order_details 
+ON products.product_id = order_details.product_id 
+GROUP BY product_name, products.product_id; 
+
+SELECT * 
+FROM product_qnty 
+WHERE sum = (SELECT max(sum) FROM product_qnty)
+
+   product_name    | product_id | sum 
+-------------------+------------+-----
+ Camembert Pierrot |         60 | 945
+(1 row)
+

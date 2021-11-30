@@ -1,0 +1,158 @@
+<!-- Home Page -->
+<!doctype html>
+<html lang="en">
+  <head>
+    
+	<link rel='icon' href='../resources/img/favicon.ico' type='image/x-icon'/>
+    <!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<title>Current Conditions</title>
+	<style>
+		h1 {text-align: center;}
+		p {text-align: center;}
+		div {text-align: center;}
+		</style>
+	<style>
+		.content {
+			max-width: 700px;
+			margin: auto;
+		}
+		</style>
+  </head>
+  <body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="home.html">
+      <img class="rounded-circle" src="img\tree1.png" alt="add logo" width="30" height="30">
+    </a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarText">
+		<ul class="navbar-nav mr-auto">
+		  <li class="nav-item">
+			<a class="nav-link" href="home.HTML">Home <span class="sr-only">(current)</span></a>
+		  </li>
+		  <li class="nav-item active">
+			<a class="nav-link" href="current_reccomendations.HTML">Current</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="weekly.html">Weekly</a>
+		  </li>
+      <li class="nav-item">
+      <a class="nav-link" href="monthly.html">Monthly</a>
+      </li>
+		</ul>
+		<div class="form-inline my-2 my-lg-0">
+			<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Logout</button>
+		</div>
+	  </div>
+	</nav>
+  <div class="container" style="text-align: center; vertical-align: middle;">
+    <!-- body -->
+	<div class="container" style="text-align: center; vertical-align: middle;">
+        <!-- body -->
+        <div class="jumbotron">
+          <h1 class="display-5">Current Conditions</h1>
+          <hr class="my-4">
+          <p><p>Current Date and Time is: <span id='date-time'></span>.</p>
+		  <script>
+			var dt = new Date();
+			document.getElementById('date-time').innerHTML=dt;
+		</script>
+        </div>
+  </div>
+	<br>
+	<br>
+	<style>
+		.flex-container {
+    display: flex;
+}
+
+.flex-child {
+    flex: 1;
+    border: 25px solid rgb(214, 214, 214);
+}
+
+.flex-child:first-child {
+    margin-right: 20px;
+}
+	</style>
+	<div class="flex-container"style="text-align: center; vertical-align: middle;">
+
+		<div class="flex-child magenta">
+		  <strong>Current Temp</strong>
+		  <br>
+		  <strong><span id= "temp"></span>  °F</strong>
+		  <br>
+		  <p style="font-size:small"> Last Updated: N/A</p>
+		</div>
+
+		<div class="flex-child magenta">
+			<strong>Current Humidity</strong>
+			<br>
+			<strong><span id= "humidity"></span> </strong>
+			<br>
+			<p style="font-size:small"> Last Updated: N/A</p>
+		</div>
+
+	</div>
+	<br>
+	<br>
+	<br>
+
+	<div class="jumbotron" >
+		<p style="font-size:large">What we reccomend based on current conditions: <br><br> <span id= "hRec"></span> <br><br> <span id= "tRec"></span> </p>
+	</div>
+
+	<script>
+		let temp = 33;
+		let humidity = 70;
+		let tRec;
+		let hRec;
+
+		if(temp < 32)
+		{
+			tRec = "Its a chilly outside! If you're planning on going out make sure to bring a jacket!";
+		}
+		if(temp > 32 && temp < 65)
+		{
+			tRec = "Its a bit nippy out! You will probably want to wear something warm if you're going outside!";
+		}
+		if(temp > 65 && temp < 80)
+		{
+			tRec = ""
+		}
+		if(temp > 80)
+		{
+			tRec = "Its hot out! If your're planning on going outside make sure to wear something light and drink lots of water!";
+		}
+		if(humidity < 20)
+		{
+			hRec = "Wow its dry! You may want extra moisturizer so you don't dry out!";
+		}
+		if(humidity > 20 && humidity < 30)
+		{
+			hRec = "Its pretty dry! You may want to carry chapstick with you today!";
+		}
+		if(humidity > 30 && humidity < 45)
+		{
+			hRec = ""
+		}
+		if(humidity > 45 && humidity < 60)
+		{
+			hRec = "Its a little humid today! Rain may be in the forecast!"
+		}
+		if(humidity > 60 && humidity < 90)
+		{
+			hRec = "The humidity is high! Expect rain and high humidity can contribute to feelings of low energy and result in you feeling lthargic!."
+		}
+		
+		document.getElementById("temp").innerHTML = temp;
+		document.getElementById("hRec").innerHTML = hRec;
+		document.getElementById("tRec").innerHTML = tRec;
+		document.getElementById("humidity").innerHTML = humidity;
+	</script>
+
+  </body>
+
+</html>

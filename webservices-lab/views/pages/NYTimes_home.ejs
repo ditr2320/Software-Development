@@ -1,0 +1,69 @@
+<%- include('../partials/header'); -%>
+<body>
+  <main>
+    <div class="" style="background-color: #0f415c;">
+      <div class="container-fluid" style="padding: 2%; ">
+        <form class="" action="/get_feed" method="post">
+          <div class="row">
+            <div class="col-3">
+
+            </div>
+            <div class="col-5">
+              <input class="form-control" type="text" name="title" placeholder="Enter Movie Name">
+            </div>
+            <div class="col-1">
+              <input class="btn btn-light" type="submit" name="Submit" value = "Submit"/>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+<div class="container">
+  <form class="" action="/get_feed" method="post">
+
+<!-- <p>
+  <% if (items){ %>
+      <%- items[1].byline %>
+<% } %>
+</p> -->
+<br><br>
+
+    <div class="card-columns">
+
+      <%
+      if (items) {
+          var movieInfo = '';
+        items.forEach(function(item){
+             movieInfo +=
+             '<div class="card" style="width: 18rem;"><div class="card-body"><h4 class="card-title">'
+               + item.display_title
+               + '</h4><p><b>Link to article:</b> </p><a href="'
+               + item.link.url
+               + '" class="btn btn-primary" style = "background-color: #2C9CA7; width: 15rem; ">'
+               + item.link.suggested_link_text
+               + '</a><br><br><p><b>Published Date:</b> </p><p>'
+               + item.publication_date
+               + '</p><p><b>Review Summary:</b> </p><p>'
+               + item.summary_short
+               + '</p></div></div>'
+           }); %>
+           <%- movieInfo %>
+      <% } %>
+
+
+
+    </div>
+  </form>
+</div>
+
+
+    <div class="container-lg" style="margin-top: 2%;">
+      <% if (error) { %>
+        <div class="alert alert-danger"><%- message %></div>
+      <% } %>
+      <%- include('../partials/reviews', {items: items}); %>
+    </div>
+
+  </main>
+<%- include('../partials/footer'); -%>

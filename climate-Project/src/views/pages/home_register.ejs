@@ -1,0 +1,108 @@
+<!-- Register Page -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta name="charset" content="UTF-8">
+  <meta name="author" content="Qi">
+  <meta name="description" content="Register Page">
+  <title>Register </title>
+  <!-- <link rel='icon' href='../resources/img/favicon.ico' type='image/x-icon'/> -->
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" href="views/css/register.css">
+</head>
+<body onload = verification()>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="home">
+      <img class="rounded-circle" src="views\img\tree1.png" alt="add logo" width="30" height="30">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
+        <!-- </li>
+        <li class="nav-item">
+          <a class="nav-link" href="current_reccomendations">Current</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="weekly">Weekly</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="monthly">Monthly</a>
+        </li> -->
+      </ul>
+      <!-- <div class="form-inline my-2 my-lg-0">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Logout</button>
+      </div> -->
+    </div>
+  </nav>
+      <div class="row">
+        <div class="col-7">
+          <form action = "/home_register" method = "post" class="form-register">
+            <!-- <img class="rounded-circle center" src="img/logo2.png" alt="" width="180" height="180"> -->
+            <br> <br>
+            <h1 class="h4 mb-4 font-weight-normal">Register</h1>
+            <div class="form-group" >
+              <label for="inputFirst">First Name</label>
+              <input type="username" class="form-control" name="inputFirst" id="inputFirst"  placeholder="First Name" required autofocus >
+            </div>
+            <div class="form-group">
+              <label for="inputLast">Last Name</label>
+              <input type="username" class="form-control" name="inputLast" id="inputLast" placeholder="Last Name" required autofocus >
+            </div>
+            <div class="form-group">
+              <label for="inputUname">Username</label>
+              <input type="username" class="form-control" name="inputUname"id="inputUname"  placeholder="Username" required autofocus >
+            </div>
+            <div class="form-group">
+              <label for="RPID">Sensor ID</label>
+              <input type="username" class="form-control" name="RPID"id="RPID"  placeholder="Sensor ID" required autofocus >
+            </div>
+            <div class="form-group">
+              <label for="inputPassword">Password</label>
+              <input type="password" class="form-control" name="inputPassword"id="inputPassword"  placeholder="Password" required autofocus>
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">Confirm Password</label>
+              <input type="password" class="form-control" name="confirmPassword"id="confirmPassword" placeholder="Confirm Password" required autofocus >
+            </div>
+            <div style="text-align: center; vertical-align: middle;">
+              <a href="home_login" class="btn btn-primary" role="button" aria-disabled="true" style = "color: white;background-color: #336699;">Sign In</a>
+              <button id = "submitButton1"type="submit" class="btn btn-primary" disabled = true style = "color: white;background-color: #336699;">Register</button>
+            </div>
+          </form>
+        </div>
+        <div class="col-l">
+          <br> <br> <br>
+           <div class="jumbotron" style="text-align: center; vertical-align: middle;">
+             <img class="rounded-circle center" src="views/img/logo2.png" alt="" width="180" height="180"> <br>
+             <div id="message" style="display: block">
+               <h5>Password must contain the following:</h5>
+               <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+               <p id="capital" class="invalid">
+                 A <b>capital (uppercase)</b> letter
+               </p>
+               <p id="number" class="invalid">A <b>number</b></p>
+               <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+               <p id="match" class="invalid">
+                 Password and Confirm Password Match
+               </p>
+             </div>
+           </div>
+        </div>
+      </div>
+      <div class="container-lg" style="margin-top: 2%;">
+        <% if (error) { %>
+          <script>
+            alert("User already exists");
+          </script>
+        <% } %>
+      </div>
+</body>
+<script src="views/js/registerVerification.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+</html>

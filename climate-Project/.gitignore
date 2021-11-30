@@ -1,0 +1,8 @@
+# System Files
+.DS_Store
+
+# ignore node_modules. The .dockerignore should prevent these anyway, but JIC.
+node_modules/
+
+# ignore env files to keep keys off internet
+.env

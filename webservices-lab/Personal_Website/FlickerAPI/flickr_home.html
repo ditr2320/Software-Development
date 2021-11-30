@@ -1,0 +1,94 @@
+<!-- Home Page -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta name="charset" content="UTF-8">
+  <meta name="author" content="Qi">
+  <meta name="description" content="Register Page">
+  <title>Home </title>
+  <script src="js/flickr.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+	<!-- jquery -->
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="../mypage.html">Home</a>
+    <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+      <a class="nav-link" href="../projects.html">Projects</a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="../signup-modal/login.html">Login</a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="=flickr_home.html">Photo Gallery</a>
+      </li>
+    </ul>
+    <a href="https://github.com/ditr2320"><img src="img/git.jpg" alt="" height="50"></a>
+    </div>
+  </nav>
+
+  <div class="" style="background-color: #0f415c;">
+    <div class="container-fluid" style="padding: 2%; ">
+        <div class="row">
+
+          <!-- <div class="col-2">
+            <select class="custom-select" id = "numberSelect">
+               <option value = "0" selected >Number of Photos</option>
+               <option value = "30"> 30 </option>
+               <option value ="50"> 50 </option>
+               <option value = "70"> 70 </option>
+            </select>
+          </div> -->
+          <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="selectNumberButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false">
+            # Photos
+          </button>
+          <div
+            id="numberSelector"
+            class="dropdown-menu"
+            aria-labelledby="selectNumberButton">
+          <a class = "dropdown-item" onclick="picValue(30)"> 30 </a>
+          <a class = "dropdown-item" onclick="picValue(50)"> 50 </a>
+          <a class = "dropdown-item" onclick="picValue(70)"> 70 </a>
+        </div>
+        </div>
+
+          <div class="col-5">
+            <input class="form-control" id = "tagSearch" type="text" name="flickerSearch" placeholder="Enter key word" onchange="getTags();">
+          </div>
+
+          <div class="col-1">
+            <input class="btn btn-light" type="submit" name="flickrSubmit" value = "Submit" onclick = "makeApiCall();"/>
+          </div>
+
+        </div>
+    </div>
+  </div>
+
+
+ <div class="container" id = "testing1">
+
+   <div class="card-columns" id = "cardClass" style = "column-count: 5;">
+  
+
+   </div>
+
+   </div>
+
+ </div>
+
+</body>
+</html>

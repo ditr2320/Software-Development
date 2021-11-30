@@ -1,0 +1,158 @@
+<!-- Home Page -->
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Monthy</title>
+    <link rel='icon' href='../resources/img/favicon.ico' type='image/x-icon' />
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="home_user">
+        <img class="rounded-circle" src="views\img\tree1.png" alt="add logo" width="30" height="30">
+      </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="home_user">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="current_reccomendations">Current</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="weekly">Weekly</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="monthly">Monthly</a>
+                </li>
+            </ul>
+            <!-- <div class="form-inline my-2 my-lg-0">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Logout</button>
+            </div> -->
+            <div class="form-inline my-2 my-lg-0">
+              <!-- <button class="btn btn-outline-light my-2 my-sm-0" href="submit">Logout</button> -->
+              <a class="btn btn-secondary" href="home" role="button">Log Out</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="text-align: center; vertical-align: middle;">
+        <!-- body -->
+        <div class="jumbotron">
+          <h1 class="display-5">Monthly Data</h1>
+          <hr class="my-4">
+          <p>Weather Data for the Current Month</p>
+        </div>
+
+
+    </div>
+  </script> 
+  <div class="container">
+    <canvas id="monthlyHumidityChart"></canvas>
+  </div>
+    <div class="container"> <br> <br> <br>
+      <h1>Past 30 Days</h1>
+      <table class="table">
+        <thead>
+          <tr>
+
+            <th scope="col">Date</th>
+            <th scope="col">Temperature (Celsius)</th>
+            <th scope="col">Low (Celsius)</th>
+            <th scope="col">High (Celsius)</th>
+            <th scope="col">Humidity (%)</th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+            <% for(var i = 0; i < climate.length; i++){ %>
+              <tr>
+
+            <td scope="col"><%= climate[i].date.toString().substring(0,15) %></td>
+            <td scope="col"><%= climate[i].temperature.toFixed(2) %></td>
+            <td scope="col"><%= low[i].temperature.toFixed(2) %></td>
+            <td scope="col"><%= high[i].temperature.toFixed(2) %></td>
+            <td scope="col"><%= humidity[i].humidity.toFixed(2) %></td>
+          </tr>
+          <% } %>
+
+
+        </tbody>
+      </table>
+
+    </div>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+
+    
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+<script>
+  var ctxL = document.getElementById("monthlyHumidityChart").getContext('2d');
+  var dayH = <%- JSON.stringify(humidity) %>;
+  console.log(dayH);
+  var dayT = <%- JSON.stringify(climate) %>;
+  var dayHArr = [];
+  var dayTArr = [];
+  var labels = [];
+  var climateCl = <%= climate.length %>;
+  for(var j = climateCl-1; j >= 0; j--){ 
+    //console.log(dayH[j].humidity);
+    //console.log(dayT[j].temperature);
+    console.log(dayH[j].date.toString());
+    console.log(dayH[j].date);
+    dayHArr.push(dayH[j].humidity);
+    dayTArr.push(dayT[j].temperature);
+    labels.push(dayH[j].date.toString().substring(0,10));
+   }
+    var myLineChart = new Chart(ctxL, {
+    type: 'line',
+    data: {
+    labels: labels,
+    datasets: [{
+    label: "Humidity",
+    data: dayHArr,
+    backgroundColor: [
+    'rgba(105, 0, 132, .2)',
+    ],
+    borderColor: [
+    'rgba(200, 99, 132, .7)',
+    ],
+    borderWidth: 2
+    },
+    {
+    label: "Temperature",
+    data: dayTArr,
+    backgroundColor: [
+    'rgba(0, 137, 132, .2)',
+    ],
+    borderColor: [
+    'rgba(0, 10, 130, .7)',
+    ],
+    borderWidth: 2
+    }
+    ]
+    },
+    options: {
+    responsive: true
+    }
+    });
+
+</script>
+
+</body>
